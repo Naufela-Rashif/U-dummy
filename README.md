@@ -20,13 +20,11 @@ User Dashboard: Displays enrolled courses, progress tracking, and learning achie
 
 Technologies Used
 
-Frontend: HTML, CSS, JavaScript (React.js or Vue.js)
+Frontend: Tailwind CSS, TypeScript, Vue.js
 
-Backend: Node.js with Express or Python with Django/Flask
+Backend: Golang, Go fiber
 
-Database: MongoDB or PostgreSQL
-
-Deployment: Netlify, Vercel, or Heroku
+Database: PostgreSQL
 
 Usage
 
