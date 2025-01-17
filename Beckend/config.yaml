@@ -1,0 +1,8 @@
+
+database:
+  host: "localhost"
+  port: "5432"
+  user: "udummy"
+  password: "kujwhehfuw32433"
+  name: "db_udummy"
+  sslmode: require
