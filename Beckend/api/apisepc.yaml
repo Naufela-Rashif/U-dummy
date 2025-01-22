@@ -1,0 +1,271 @@
+openapi: 3.1.0
+info:
+  title: U-dummy
+  description: API spec U-dummy , U-dummy is cloning of udemy
+  version: 1.0.0
+  contact:
+    name: Naufela Rashif
+    email: naufelarashif@gmail.com
+servers:
+  - url: https://localhost:3000/api
+    description: Development Server
+externalDocs :
+  url : https://www.udemy.com/
+  description: udemy website
+paths:
+  /cart:
+    get:
+    post:
+    delete:
+  /cart{usersId}:
+    get:
+  /categories:
+    get:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category API"
+      description: "List all Categories"
+      summary: "List all Categories"
+      responses:
+        "200":
+          description: "Success get all categories"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "number"
+                  status:
+                    type: "string"
+                  data:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Category"
+    post:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category API"
+      description: "Create new Category"
+      summary: "Create new Category"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrUpdateCategory"
+      responses:
+        "200":
+          description: "Success Create Category"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "number"
+                  status:
+                    type: "string"
+                  data:
+                    $ref: "#/components/schemas/Category"
+  /categories/{categoryId}:
+    get:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category API"
+      summary: "Get category by Id"
+      description: "Get category by id"
+      parameters:
+        - name: "categoryId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+          description: "Category Id"
+      responses:
+        "200":
+          description: "Success get category"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "number"
+                  status:
+                    type: "string"
+                  data:
+                    $ref: "#/components/schemas/Category"
+    put:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category API"
+      summary: "Update category by Id"
+      description: "Update category by Id"
+      parameters:
+        - name: "categoryId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+          description: "Category Id"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateOrUpdateCategory"
+      responses:
+        "200":
+          description: "Success update category"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "number"
+                  status:
+                    type: "string"
+                  data:
+                    $ref: "#/components/schemas/Category"
+    delete:
+      security:
+        - CategoryAuth: []
+      tags:
+        - "Category API"
+      summary: "Delete category by Id"
+      description: "Delete category by id"
+      parameters:
+        - name: "categoryId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+          description: "Category Id"
+      responses:
+        "200":
+          description: "Success delete category"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  code:
+                    type: "number"
+                  status:
+                    type: "string"
+  /courses:
+    get:
+      summary: Get All courses
+    post:
+      summary: Create new courses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type:
+                - object
+              properties:
+                type
+    Head:
+  /courses/{courseId} :
+    get:
+      summary: Get Courses
+      description:
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          description: required CoursesId for Get course
+          schema:
+
+
+    put:
+      summary: Updates Courses
+      description:
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          description: required CoursesId for course updates
+          schema:
+              type: string
+              pattern: "^[0-9]{1,16}$"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+      responses:
+  /users:
+    get:
+      summary:
+    post:
+      summary: Register User
+  /users/login:
+    post:
+      summary: Login User
+  /users/current:
+    get:
+      summary: Get User
+    delete:
+      summary: Logout User
+    patch:
+      summary: Update User
+  /contacts:
+    get:
+      summary: Search Contact
+    post:
+      summary: Create Contact
+  /contacts/{contactsId}:
+    get:
+      summary: Get Contact
+    put:
+      summary: Update Contact
+    delete:
+      summary: Remove Contact
+  /contacts/{contactsId}/addresses:
+    get:
+     summary: List Address
+    post:
+      summary: Create Address
+  /contacts/{contactsId}/addresses/{addressesId}:
+    get:
+      summary: Get Address
+    put:
+      summary: Update Address
+    delete:
+      summary: Remove Address
+
+
+
+
+
+
+
+
+
+components:
+  securitySchemes:
+    CategoryAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Authentication for Category API
+  schemas:
+    CreateOrUpdateCategory:
+      type: object
+      properties:
+        name:
+          type: string
+    Category:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
