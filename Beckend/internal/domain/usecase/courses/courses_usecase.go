@@ -1,11 +1,13 @@
-package usecase
+package courses
 
-import "context"
+import (
+	"context"
+)
 
-type CoursesUsecase interface {
-	Create(ctx context.Context, request CoursesUsecaseRequest) CourseResponse
-	Update(ctx context.Context)
-	Delete(ctx context.Context)
-	FindAll(ctx context.Context)
-	FindById(ctx context.Context)
+type UsecaseCourses interface {
+	Create(ctx context.Context, request CoursesCreateRequest) CourseResponse
+	Update(ctx context.Context, request CoursesUpdateRequest) CourseResponse
+	Delete(ctx context.Context, coursesId int)
+	FindAll(ctx context.Context) []CourseResponse
+	FindById(ctx context.Context, coursesId int) CourseResponse
 }
